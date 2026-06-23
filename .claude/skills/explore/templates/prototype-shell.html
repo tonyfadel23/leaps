@@ -1,0 +1,238 @@
+<!--
+  Prototype Shell Template — paste verbatim into every variation-*.html
+
+  How it works:
+  - Standalone (opened directly): shows iPhone frame, dot navigation,
+    keyboard arrow keys, neutral background
+  - Iframe (inside showcase or brief): strips phone chrome, hides dots,
+    scales via CSS zoom, sends screen-change messages to parent
+-->
+
+<!-- ═══ HEAD: viewport + style ═══ -->
+<!--
+  Add to <head>:
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  NEVER set width=375 or any fixed width.
+-->
+
+<!-- ═══ BLOCK A — CSS (paste into <style>) ═══ -->
+<style>
+/* ═══ PROTOTYPE SHELL (mandatory — do not modify) ═══ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { height: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #F8FAFC;
+  color: #262626;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 100vh; margin: 0; padding: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+.proto-wrapper {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 0;
+}
+.phone-shell {
+  width: 390px; height: 844px;
+  background: #1c1c1e;
+  border-radius: 55px;
+  padding: 8px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.22),
+              0 0 0 1px rgba(255,255,255,0.08) inset;
+}
+.phone-notch {
+  position: absolute; top: 8px;
+  left: 50%; transform: translateX(-50%);
+  width: 126px; height: 37px;
+  background: #000; border-radius: 24px; z-index: 20;
+}
+.phone-home {
+  position: absolute; bottom: 8px;
+  left: 50%; transform: translateX(-50%);
+  width: 134px; height: 5px;
+  background: rgba(255,255,255,0.3); border-radius: 3px; z-index: 20;
+}
+.phone-screen-area {
+  width: 100%; height: 100%;
+  background: #fff; border-radius: 47px;
+  overflow: hidden; display: flex; flex-direction: column;
+  position: relative;
+}
+.screen { display: none; flex-direction: column; min-height: 100%; overflow-y: auto; overflow-x: hidden; }
+.screen.active { display: flex; }
+
+/* Dot navigation (standalone) */
+.proto-dots { display: flex; gap: 8px; align-items: center; justify-content: center; margin-top: 16px; }
+.proto-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #D4D4D4; cursor: pointer; transition: all .2s;
+  border: none; padding: 0;
+}
+.proto-dot:hover { background: #AAA; }
+.proto-dot.active { width: 12px; height: 12px; background: #2563EB; }
+.proto-label { text-align: center; margin-top: 8px; font-size: 11px; font-weight: 500; color: #999; }
+.proto-label .num { color: #2563EB; font-weight: 600; }
+
+/* ═══ IFRAME MODE (mandatory — do not modify) ═══ */
+body.in-iframe {
+  background: #fff; padding: 0;
+  display: block;
+  align-items: flex-start;
+  overflow: hidden;
+}
+body.in-iframe .proto-wrapper { display: contents; }
+body.in-iframe .phone-shell {
+  width: 375px; min-height: auto;
+  background: #fff; border-radius: 0;
+  padding: 0; box-shadow: none;
+}
+body.in-iframe .phone-notch,
+body.in-iframe .phone-home { display: none; }
+body.in-iframe .phone-screen-area { border-radius: 0; }
+body.in-iframe .proto-dots,
+body.in-iframe .proto-label { display: none; }
+</style>
+
+<!-- ═══ BLOCK B — HTML structure (paste as <body> content) ═══ -->
+<body>
+<div class="proto-wrapper">
+  <div class="phone-shell">
+    <div class="phone-notch"></div>
+    <div class="phone-home"></div>
+    <div class="phone-screen-area">
+
+      <!-- ═══ SCREENS GO HERE ═══ -->
+      <div class="screen active" id="screen-default">...</div>
+      <div class="screen" id="screen-detail">...</div>
+      <!-- ═══ END SCREENS ═══ -->
+
+    </div>
+  </div>
+  <div class="proto-dots" id="proto-dots"></div>
+  <div class="proto-label" id="proto-label"></div>
+</div>
+
+<!-- ═══ BLOCK C — JS (paste into <script> at end of body) ═══ -->
+<script>
+/* ═══ PROTOTYPE NAVIGATION (mandatory — do not modify) ═══ */
+const screens = [
+  { param: '', label: 'Home' },
+  { param: 'detail', label: 'Detail' },
+  // ... fill in from journey map stages
+];
+window.__screens = screens;
+
+let currentIdx = 0;
+
+function navigateTo(param) {
+  const idx = screens.findIndex(s => s.param === param);
+  if (idx === -1) return;
+  currentIdx = idx;
+
+  // Show/hide screens
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('screen-' + (param || 'default'));
+  if (target) target.classList.add('active');
+
+  // Update standalone dots
+  renderDots();
+
+  // Notify parent (showcase/brief sync)
+  if (window.self !== window.top) {
+    window.parent.postMessage({ type: 'screen-change', entry: param }, '*');
+  }
+}
+
+function renderDots() {
+  const dotsEl = document.getElementById('proto-dots');
+  const labelEl = document.getElementById('proto-label');
+  if (!dotsEl) return;
+  dotsEl.innerHTML = screens.map((s, i) =>
+    `<button class="proto-dot${i === currentIdx ? ' active' : ''}"
+      onclick="navigateTo('${s.param}')"></button>`
+  ).join('');
+  if (labelEl) {
+    labelEl.innerHTML = `<span class="num">Screen ${currentIdx + 1}</span> — ${screens[currentIdx].label}`;
+  }
+}
+
+// Listen for parent navigation commands
+window.addEventListener('message', (e) => {
+  if (e.data?.type === 'navigate' && e.data.entry !== undefined) {
+    navigateTo(e.data.entry);
+  }
+});
+
+// Keyboard nav (standalone)
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    navigateTo(screens[Math.min(currentIdx + 1, screens.length - 1)].param);
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    navigateTo(screens[Math.max(currentIdx - 1, 0)].param);
+  }
+});
+
+// Notify parent of available screens (for brief dot navigation)
+if (window.self !== window.top) {
+  window.parent.postMessage({ type: 'screens-ready', screens: screens }, '*');
+}
+
+// ═══ IFRAME SCALING (mandatory) ═══
+if (window.self !== window.top) {
+  document.body.classList.add('in-iframe');
+  var shell = document.querySelector('.phone-shell');
+  shell.style.background = '#fff';
+  shell.style.borderRadius = '0';
+  shell.style.boxShadow = 'none';
+  shell.style.padding = '0';
+  shell.style.width = '375px';
+  shell.style.display = 'flex';
+  shell.style.flexDirection = 'column';
+  var _notch = document.querySelector('.phone-notch');
+  var _home = document.querySelector('.phone-home');
+  var _screen = document.querySelector('.phone-screen-area');
+  var _dots = document.querySelector('.proto-dots');
+  var _label = document.querySelector('.proto-label');
+  if (_notch) _notch.style.display = 'none';
+  if (_home) _home.style.display = 'none';
+  if (_screen) _screen.style.borderRadius = '0';
+  if (_dots) _dots.style.display = 'none';
+  if (_label) _label.style.display = 'none';
+  function fitShell() {
+    var z = window.innerWidth / 375;
+    shell.style.zoom = z;
+    var h = (window.innerHeight / z) + 'px';
+    shell.style.height = h;
+    shell.style.minHeight = h;
+  }
+  fitShell();
+  window.addEventListener('resize', fitShell);
+}
+
+// Route from URL param on load
+const _entry = new URLSearchParams(window.location.search).get('entry');
+navigateTo(_entry || '');
+</script>
+</body>
+
+<!--
+  Screen ID convention:
+  - Default screen (first in flow): id="screen-default", param: ''
+  - All others: id="screen-{param}" with kebab-case slugs from journey map
+    e.g., screen-plan-setup, screen-order-confirmed
+
+  Canonical dimensions (non-negotiable):
+  | Element                    | Value           |
+  |----------------------------|-----------------|
+  | Phone shell outer          | 390 x 844 px    |
+  | Phone shell border-radius  | 55px            |
+  | Screen area border-radius  | 47px            |
+  | Dynamic Island notch       | 126 x 37 px     |
+  | Home indicator             | 134 x 5 px      |
+  | Content design target      | 375 px wide     |
+  | Background                 | #F8FAFC         |
+  | Active dot                 | 12x12, #2563EB  |
+  | Inactive dot               | 10x10, #D4D4D4  |
+-->

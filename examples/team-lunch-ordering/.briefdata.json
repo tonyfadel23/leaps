@@ -1,0 +1,78 @@
+{
+  "title": "Team Lunch Ordering",
+  "slug": "team-lunch-ordering",
+  "meta": {
+    "slug": "team-lunch-ordering",
+    "date": "2026-06-22",
+    "stage": "Assessed"
+  },
+  "producer": "Sample PM",
+  "occasionLabel": "Workday lunch",
+  "opportunityLabel": "Coordination",
+  "betHeadline": "One coordinated team lunch order beats ten individual ones.",
+  "jtbd": "When a team wants to eat together at the office, help them order in one coordinated flow so no one is left out and it all arrives together.",
+  "seeking": "Evidence that coordination friction is the real blocker, not price or selection.",
+  "confidence": {
+    "color": "yellow",
+    "label": "Medium",
+    "reason": "Strong behavioral signal, but the retention impact is still modeled, not measured."
+  },
+  "keyNumbers": {
+    "opportunity": "$2-4M / yr",
+    "complexity": "M"
+  },
+  "executiveSummary": [
+    {
+      "text": "38% of office orders happen within a 30-minute lunch window",
+      "source": "Analytics: order timestamps (sample data)",
+      "sourceUrl": null
+    },
+    {
+      "text": "Group orders carry a 2.3x higher average basket than solo orders",
+      "source": "Analytics: basket model (sample data)",
+      "sourceUrl": null
+    },
+    {
+      "text": "Coordination, not price, is the top-cited friction in team lunch ordering",
+      "source": null,
+      "sourceUrl": null
+    }
+  ],
+  "conviction": {
+    "score": 55,
+    "verdict": "needs",
+    "evidence": 3,
+    "dimensions": [
+      {
+        "key": "problem",
+        "label": "Problem",
+        "score": 52,
+        "note": "Problem still asserted, not grounded."
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "score": 53,
+        "note": "1 of 2 sizing inputs live — attach rate still modeled."
+      },
+      {
+        "key": "feasibility",
+        "label": "Feasibility",
+        "score": 45,
+        "note": "Not yet explored — buildability unproven."
+      },
+      {
+        "key": "evidence",
+        "label": "Evidence quality",
+        "score": 67,
+        "note": "1 of 3 claims still assumed, not measured."
+      }
+    ],
+    "gap": {
+      "dim": "feasibility",
+      "body": "Feasibility — the build/ops path is unproven. A scoped prototype or ops dry-run would show whether it can ship."
+    },
+    "verdictLine": "Feasibility is holding this back — close it to decide.",
+    "computedAt": "2026-06-22T20:16:39.511Z"
+  }
+}

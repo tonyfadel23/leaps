@@ -1,0 +1,10 @@
+{
+  "verdict": {
+    "killBelow": 41,
+    "pursueFrom": 70,
+    "pursueMinEvidence": 3
+  },
+  "discovery": {
+    "model": "haiku"
+  }
+}
