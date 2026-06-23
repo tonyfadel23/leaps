@@ -135,9 +135,11 @@ Connector Preflight
 1. Read the PM's input
 2. Detect input type (see Interviewer agent: 6 types)
 3. If ambiguous, ask: "This reads like a [type] — is that right, or is it more [alternative]?"
-4. Load context:
-   - Pull relevant knowledge from the `knowledge_base` connector (if available)
-   - If pipeline folder exists for this idea: read prior work
+4. Load context — **run before generating the skeleton brief, not after:**
+   - **Mandatory wiki pull**: Invoke the Context Retriever agent immediately with the PM's raw input as the query. Run all available supplementary sources (ticketing, feedback, support, research_repository). This pull happens before the first interview question so the interviewer enters the conversation knowing what the org already knows.
+   - If pipeline folder exists for this idea: read prior work from `learn.md`, `decision-log.md`
+   - Surface to the PM: "Here's what I found in our knowledge base before we start: [findings summary]". If nothing found, say so — don't skip silently.
+   - Pass the full Context Retriever output to the Interviewer as pre-loaded context so it can propose answers grounded in prior work from question 1.
 5. **Generate skeleton brief** — create `pipeline/{idea-slug}/brief.html`
    immediately so the PM can see it from the first question:
    - Derive the idea title from the PM's input (e.g. "Water Subscription")

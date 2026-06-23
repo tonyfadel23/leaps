@@ -163,9 +163,23 @@ Don't ask generic product questions.
 
 Regardless of input type, the Interviewer drives through these stages (in order):
 
+### 0. Pre-Interview Context Pull (MANDATORY — runs before question 1)
+
+Before asking anything, read the context the orchestrator loaded from the knowledge base. If it wasn't pre-loaded (e.g. the MCP was unavailable at Phase 1), run the Context Retriever yourself now with the PM's raw input.
+
+Use what you find to sharpen your first question:
+- If prior work exists: "I see we ran [X] in [year] — is this a continuation or a different angle?"
+- If a team owns this space: "The [tribe/team] owns [adjacent area] — is this scoped to them or broader?"
+- If prior research exists: "There's existing research on [topic] — should I pull from that before we start?"
+- If nothing found: proceed without mentioning it — don't front-load uncertainty.
+
+**Do not ask question 1 until this read is complete.** The goal is that your first question already reflects what the org knows, not what you'd ask cold.
+
 ### 1. Scope Clarification (1-3 questions)
 What exactly is the PM talking about? Narrow from vague to specific.
 Propose concrete interpretations grounded in the platform's reality.
+
+**When the domain or product area becomes clear** (usually by question 1-2), run a second focused Context Retriever query on that specific domain: "Prior work in [domain]", "Experiments touching [capability]", "Team ownership of [area]". Fold the results into your next proposed answer — don't announce the pull, just use it.
 
 ### 2. Occasion Identification (1-2 questions)
 Identify the real, recurring consumer context behind the idea. Propose an occasion
