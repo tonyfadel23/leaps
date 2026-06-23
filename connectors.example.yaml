@@ -1,0 +1,42 @@
+# Sample connectors — the data sources discovery can reach.
+# Each role maps to ONE MCP server. The `sample-metrics` entry below is a
+# placeholder example; replace it with your real tools, or run /setup.
+# Roles with a commented-out `primary:` are unbound — the pipeline still works,
+# skills just ask you to paste data or skip enrichment when a source is missing.
+
+connectors:
+  metrics_source:
+    description: "Customer counts, order volumes, sizing, baselines, unit economics"
+    primary:
+      mcp: sample-metrics
+      url: "https://mcp.example.com/metrics"
+      transport: http
+      hint: "EXAMPLE — replace with your BI/analytics MCP (a data gateway, Looker, BigQuery, etc.). Send natural-language questions; cite the source on every number."
+    required: true
+    fallback_mode: ask_user
+
+  knowledge_base:
+    description: "Prior work, domain ownership, existing decisions, tribal knowledge"
+    # primary:
+    #   mcp: your-knowledge-tool
+    #   url: "https://..."
+    #   transport: http
+    #   hint: "How to search your knowledge base — 2-3 focused questions, not broad searches."
+    required: false
+    fallback_mode: ask_user
+
+  design_system:
+    description: "Design tokens, component patterns, visual language"
+    # primary:
+    #   mcp: figma
+    #   hint: "Figma file URL for design tokens."
+    required: false
+    fallback_mode: skip
+
+  market_intel:
+    description: "Competitor tracking, market research, industry benchmarks"
+    # primary:
+    #   mcp: your-competitor-tool
+    #   hint: "Search competitor features/flows. Supplement with WebSearch."
+    required: false
+    fallback_mode: skip

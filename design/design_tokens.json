@@ -1,0 +1,19 @@
+{
+  "name": "Neutral Default System",
+  "colors": {
+    "primary": { "$type": "color", "$value": { "hex": "#2563EB" }, "$description": "Primary brand / CTAs, active states" },
+    "primary-dark": { "$type": "color", "$value": { "hex": "#1D4ED8" }, "$description": "Pressed / hover state" },
+    "primary-light": { "$type": "color", "$value": { "hex": "#EFF6FF" }, "$description": "Active backgrounds, tints" },
+    "success": { "$type": "color", "$value": { "hex": "#16A34A" }, "$description": "Positive signals, confirmations" },
+    "warning": { "$type": "color", "$value": { "hex": "#D97706" }, "$description": "Moderate signals, caution" },
+    "danger": { "$type": "color", "$value": { "hex": "#DC2626" }, "$description": "Errors, destructive actions, risks" },
+    "text-primary": { "$type": "color", "$value": { "hex": "#1A1A1A" }, "$description": "Primary text" },
+    "text-secondary": { "$type": "color", "$value": { "hex": "#555555" }, "$description": "Secondary text, descriptions" },
+    "text-tertiary": { "$type": "color", "$value": { "hex": "#888888" }, "$description": "Placeholders, timestamps" },
+    "text-inverse": { "$type": "color", "$value": { "hex": "#FFFFFF" }, "$description": "Text on dark/colored backgrounds" },
+    "surface-page": { "$type": "color", "$value": { "hex": "#F8FAFC" }, "$description": "Page background" },
+    "surface-card": { "$type": "color", "$value": { "hex": "#FFFFFF" }, "$description": "Card backgrounds" },
+    "surface-muted": { "$type": "color", "$value": { "hex": "#F1F5F9" }, "$description": "Pills, tags, subtle fills" },
+    "border": { "$type": "color", "$value": { "hex": "#E2E8F0" }, "$description": "Borders, dividers" }
+  }
+}

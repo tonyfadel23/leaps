@@ -1,0 +1,55 @@
+{
+  "name": "leaps",
+  "version": "0.1.0",
+  "description": "LEAPs — a local-first product-discovery tool. Learn, Explore, Assess, Prove, Ship, with a rigor-gated conviction model.",
+  "main": "electron/main.js",
+  "author": "LEAPs contributors",
+  "license": "MIT",
+  "homepage": "https://github.com/tonyfadel23/leaps#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonyfadel23/leaps.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tonyfadel23/leaps/issues"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --mac",
+    "test": "node --test scripts/*.test.js && node evals/agent-tests/structural.test.js",
+    "eval": "node evals/agent-tests/structural.test.js && node evals/agent-tests/contracts.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "electron": "^39.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "com.leaps.app",
+    "productName": "LEAPs",
+    "files": [
+      "electron/**",
+      "src/**",
+      "examples/**",
+      "connectors.example.yaml"
+    ],
+    "mac": {
+      "icon": "build/icon.icns",
+      "category": "public.app-category.productivity",
+      "target": {
+        "target": "dmg",
+        "arch": "arm64"
+      },
+      "identity": null,
+      "extendInfo": {
+        "CFBundleName": "LEAPs",
+        "CFBundleDisplayName": "LEAPs"
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+# dependencies / build output
+node_modules/
+dist/
+*.log
+.DS_Store
+_shots/
+.playwright-mcp/
+
+# private work — your concepts and history stay LOCAL, never published
+/pipeline/
+/archive/
+/backlog/
+
+# machine-specific Claude Code config (each user has their own)
+.claude/settings.local.json
+**/.claude/settings.local.json
+
+# per-deployment context you fill in (may contain company specifics)
+.claude/skills/_shared/reference/business-context.md
+business-context.json
+context/
+connectors.yaml
+
+# eval bookkeeping
+**/eval/.eval-state.json
+design/.figma-source
+
+# python caches
+__pycache__/
+*.pyc
+
+# Per-machine design source marker
+design/.design-state.json

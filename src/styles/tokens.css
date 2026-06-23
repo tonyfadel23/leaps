@@ -1,0 +1,45 @@
+/* LEAPs design tokens — crisp, modern, cool-neutral palette (progressive-app feel).
+   Theme = .leap on the root; modifiers: .is-dark, .accent-teal, .accent-violet. */
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+.leap {
+  /* surfaces — clean, slightly cool whites and grays (no warm/brown cast) */
+  --bg:#FAFBFC; --surface:#FFFFFF; --surface-2:#F4F5F7; --surface-3:#E9EBEF;
+  --ink-1:#17181B; --ink-2:#595E68; --ink-3:#9AA0AB;
+  --border:#EAECEF; --border-2:#DCDFE4;
+
+  /* accent — crisp indigo */
+  --accent:#4F54E8; --accent-weak:#EEEFFD; --accent-ink:#FFFFFF;
+
+  /* decision colors — clean, saturated, modern */
+  --pursue:#15A34A; --pursue-weak:#E8F6EE;
+  --needs:#C77A0A;  --needs-weak:#FBF1E2;
+  --kill:#DC4646;   --kill-weak:#FBEBEB;
+
+  /* softer, cooler shadows */
+  --shadow-sm:0 1px 2px rgba(20,22,28,.04);
+  --shadow-md:0 4px 16px rgba(20,22,28,.06),0 1px 2px rgba(20,22,28,.04);
+  --shadow-lg:0 20px 48px rgba(20,22,28,.14),0 4px 10px rgba(20,22,28,.05);
+
+  --font-display:'Figtree', sans-serif;
+  --font-mono:'Inter', sans-serif; /* data / label face */
+}
+
+.leap.accent-teal   { --accent:#0E9B89; --accent-weak:#E0F3F0; }
+.leap.accent-violet { --accent:#7C53D6; --accent-weak:#F0E9FA; }
+
+.leap.is-dark {
+  --bg:#0E0F12; --surface:#16171B; --surface-2:#1D1F24; --surface-3:#272A31;
+  --ink-1:#F1F2F5; --ink-2:#A2A8B3; --ink-3:#6A707C;
+  --border:#24262C; --border-2:#33363E;
+  --accent:#8488F2; --accent-weak:#1E2030; --accent-ink:#0E0F12;
+  --pursue:#3FBE74; --pursue-weak:#15251C;
+  --needs:#D49A3D;  --needs-weak:#28200F;
+  --kill:#E0726E;   --kill-weak:#291918;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+  --shadow-md:0 6px 20px rgba(0,0,0,.45);
+  --shadow-lg:0 24px 56px rgba(0,0,0,.6);
+}
+.leap.is-dark.accent-teal   { --accent:#3FC7B6; --accent-weak:#13241F; }
+.leap.is-dark.accent-violet { --accent:#A98AE6; --accent-weak:#1F1830; }

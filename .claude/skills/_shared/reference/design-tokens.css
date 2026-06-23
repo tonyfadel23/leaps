@@ -1,0 +1,74 @@
+/*
+ * Product OS — Shared Design Tokens
+ *
+ * Single source of truth for all Product OS HTML renderers.
+ * Agents that generate HTML artifacts (prototypes, showcases, journey maps,
+ * briefs) should embed this entire block inside a <style> tag.
+ *
+ * These files are standalone — do NOT <link> to this file.
+ * Copy-paste the :root block into your generated HTML instead.
+ *
+ * Naming convention: --pos-{category}-{name}
+ *   pos = Product OS
+ */
+
+:root {
+  /* ── Brand ─────────────────────────────────────────── */
+  --pos-brand-primary: #2563EB;       /* brand orange — CTAs, active states, badges */
+  --pos-brand-primary-light: #EFF6FF; /* light orange — active backgrounds, hover states */
+
+  /* ── Status ────────────────────────────────────────── */
+  --pos-status-success: #0E9339;      /* green — score >=4, positive signals */
+  --pos-status-warning: #EAA407;      /* amber — score 3, moderate signals */
+  --pos-status-danger: #ED1B24;       /* red — score <=2, negative signals, risks */
+
+  /* ── Text ──────────────────────────────────────────── */
+  --pos-text-primary: #262626;        /* primary text */
+  --pos-text-secondary: #666666;      /* descriptions, secondary labels */
+  --pos-text-tertiary: #999999;       /* subtitles, timestamps */
+  --pos-text-inverse: #FFFFFF;        /* text on dark/colored backgrounds */
+
+  /* ── Surface ───────────────────────────────────────── */
+  --pos-surface-page: #FBF8F4;        /* cream page background */
+  --pos-surface-card: #FFFFFF;        /* white card backgrounds */
+  --pos-surface-pill: #F5F5F5;        /* pill/tag backgrounds */
+  --pos-surface-border: #E0E0E0;      /* borders, dividers */
+
+  /* ── Shadows ───────────────────────────────────────── */
+  --pos-shadow-card: 0 2px 8px rgba(0,0,0,0.06);
+  --pos-shadow-elevated: 0 4px 16px rgba(0,0,0,0.1);
+
+  /* ── Typography ────────────────────────────────────── */
+  --pos-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --pos-font-size-xs: 10px;
+  --pos-font-size-sm: 12px;
+  --pos-font-size-md: 14px;
+  --pos-font-size-lg: 16px;
+  --pos-font-size-xl: 20px;
+  --pos-font-size-2xl: 24px;
+  --pos-font-size-3xl: 32px;
+
+  /* ── Spacing ───────────────────────────────────────── */
+  --pos-space-xs: 4px;
+  --pos-space-sm: 8px;
+  --pos-space-md: 16px;
+  --pos-space-lg: 24px;
+  --pos-space-xl: 32px;
+  --pos-space-2xl: 48px;
+
+  /* ── Radius ────────────────────────────────────────── */
+  --pos-radius-sm: 8px;
+  --pos-radius-md: 12px;
+  --pos-radius-lg: 16px;
+  --pos-radius-pill: 999px;
+}
+
+/* ── Score Utility Classes ─────────────────────────────
+ * Map evaluation scores to status colors.
+ * Score >= 4 → success (green)
+ * Score  3  → warning (amber)
+ * Score <= 2 → danger  (red)
+ */
+.pos-score-high { color: var(--pos-status-success); }
+.pos-score-mid  { color: var(--pos-status-warning); }
+.pos-score-low  { color: var(--pos-status-danger); }

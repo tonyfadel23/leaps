@@ -1,0 +1,160 @@
+# Generic Preset — Blank connector bindings for any company
+# Copy this to connectors.yaml at the project root, then run /setup to configure.
+#
+# All roles are unbound. The pipeline still works — skills will ask you to
+# paste data or skip enrichment steps when connectors are missing.
+
+connectors:
+  metrics_source:
+    description: "Customer counts, order volumes, sizing, baselines, unit economics"
+    # primary:
+    #   mcp: your-bi-tool
+    #   url: "https://..."
+    #   transport: http
+    #   hint: "How to query your BI tool — which tables, which fields."
+    # fallbacks: []
+    required: true
+    fallback_mode: ask_user
+
+  knowledge_base:
+    description: "Prior work, domain ownership, existing decisions, tribal knowledge"
+    # primary:
+    #   mcp: your-knowledge-tool
+    #   url: "https://..."
+    #   transport: http
+    #   hint: "How to search your knowledge base."
+    required: false
+    fallback_mode: ask_user
+
+  design_system:
+    description: "Design tokens, component patterns, visual language"
+    # primary:
+    #   mcp: figma
+    #   hint: "Figma file URL for design tokens."
+    required: false
+    fallback_mode: skip
+
+  ticketing:
+    description: "Issue tracking, sprint context, engineering tickets"
+    # primary:
+    #   mcp: your-ticketing-tool
+    #   url: "https://..."
+    #   transport: http
+    #   hint: "Jira, Linear, Shortcut, etc."
+    required: false
+    fallback_mode: skip
+
+  communication:
+    description: "Team messaging, signals, async comms"
+    # primary:
+    #   mcp: your-chat-tool
+    #   url: "https://..."
+    #   transport: http
+    #   hint: "Slack, Teams, etc."
+    required: false
+    fallback_mode: skip
+
+  experimentation:
+    description: "A/B test config, feature flags, experiment results"
+    # primary:
+    #   mcp: your-experiment-tool
+    #   url: "https://..."
+    #   transport: http
+    #   hint: "LaunchDarkly, Eppo, Statsig, etc."
+    required: false
+    fallback_mode: ask_user
+
+  image_generation:
+    description: "Product mockup images for prototypes"
+    # primary:
+    #   mcp: your-image-tool
+    #   hint: "Image generation for prototype visuals."
+    required: false
+    fallback_mode: skip
+
+  # --- Voice of Customer ---
+
+  product_analytics:
+    description: "Behavioral event data — funnels, retention, user paths, in-app actions"
+    # primary:
+    #   mcp: amplitude  # or mixpanel, posthog, heap
+    #   hint: "Query events, funnels, retention. Specify event names and properties."
+    required: false
+    fallback_mode: ask_user
+
+  feedback:
+    description: "Structured feature requests, upvotes, customer voice boards"
+    # primary:
+    #   mcp: productboard  # or canny
+    #   hint: "Search feature requests by theme. Check vote counts and status."
+    required: false
+    fallback_mode: ask_user
+
+  research_repository:
+    description: "Synthesized user research, interview notes, tagged insights"
+    # primary:
+    #   mcp: dovetail  # or enjoyhq
+    #   hint: "Search by tag, theme, or participant. Pull synthesized highlights."
+    required: false
+    fallback_mode: ask_user
+
+  support:
+    description: "Support tickets, complaint themes, ticket volume by category"
+    # primary:
+    #   mcp: zendesk  # or intercom, freshdesk
+    #   hint: "Search tickets by tag/category. Pull volume trends and top complaints."
+    required: false
+    fallback_mode: ask_user
+
+  code_explorer:
+    description: "Codebase exploration — APIs, services, dependencies, implementation patterns"
+    # primary:
+    #   mcp: github  # or gitlab, sourcegraph
+    #   hint: "Search code, check file structure, read implementations."
+    # fallbacks: []
+    required: false
+    fallback_mode: ask_user
+
+  # --- Quality & Observability ---
+
+  monitoring:
+    description: "Error rates, reliability signals, performance as a product concern"
+    # primary:
+    #   mcp: sentry  # or datadog, pagerduty
+    #   hint: "Query error rates by release. Check crash-free rates and top issues."
+    required: false
+    fallback_mode: skip
+
+  session_replay:
+    description: "Qualitative behavior recordings, friction identification, rage clicks"
+    # primary:
+    #   mcp: fullstory  # or hotjar, logrocket
+    #   hint: "Search sessions by event or frustration signal. Pull friction heatmaps."
+    required: false
+    fallback_mode: skip
+
+  # --- Situational ---
+
+  app_store:
+    description: "App ratings, reviews, version sentiment from App Store and Play Store"
+    # primary:
+    #   mcp: appfollow  # or appbot
+    #   hint: "Pull reviews by version, rating, keyword. Track rating trends."
+    required: false
+    fallback_mode: skip
+
+  market_intel:
+    description: "Competitor tracking, market research, industry benchmarks"
+    # primary:
+    #   mcp: similarweb  # or klue, crayon
+    #   hint: "Compare traffic, engagement, market share with competitors."
+    required: false
+    fallback_mode: skip
+
+  deployment:
+    description: "App deployment, hosting, and publishing for prototypes and briefs"
+    # primary:
+    #   mcp: vibehost
+    #   hint: "Deploy HTML prototypes and briefs."
+    required: false
+    fallback_mode: skip

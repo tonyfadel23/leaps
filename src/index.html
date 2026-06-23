@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data: file:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; script-src 'self'; frame-src 'self' file:;" />
+  <title>LEAPs</title>
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/app.css" />
+</head>
+<body>
+  <div id="leap-root" class="leap"></div>
+
+  <!-- data + helpers -->
+  <script src="js/icons.js"></script>
+  <script src="js/helpers.js"></script>
+  <script src="js/md.js"></script>
+  <!-- brief sections (native, reskinned from .briefdata.json) -->
+  <script src="js/brief/kit.js"></script>
+  <script src="js/brief/summary.js"></script>
+  <script src="js/brief/opportunities.js"></script>
+  <script src="js/brief/competitors.js"></script>
+  <script src="js/brief/journey.js"></script>
+  <script src="js/brief/variations.js"></script>
+  <script src="js/brief/kpis.js"></script>
+  <script src="js/brief/scope.js"></script>
+  <script src="js/brief/feasibility.js"></script>
+  <script src="js/brief/decisions.js"></script>
+  <script src="js/brief/prd.js"></script>
+  <script src="js/data/seed.js"></script>
+  <script src="js/data/source.js"></script>
+  <script src="js/state.js"></script>
+  <!-- views -->
+  <script src="js/views/tabs.js"></script>
+  <script src="js/views/board.js"></script>
+  <script src="js/views/session.js"></script>
+  <script src="js/views/onboarding.js"></script>
+  <script src="js/views/guide.js"></script>
+  <!-- boot -->
+  <script src="js/app.js"></script>
+</body>
+</html>
